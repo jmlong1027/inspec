@@ -5,7 +5,7 @@
 #
 
 PROGNAME=`basename $0`
-INSTALLER_DIR=/opt/inspec/embedded
+INSPEC_DIR=/opt/inspec
 CONFIG_DIR=/etc/inspec
 USAGE="usage: $0"
 
@@ -33,13 +33,13 @@ for binary in $binaries; do
 done
 
 for binary in $binaries; do
-  ln -sf $INSTALLER_DIR/bin/$binary $PREFIX/bin || error_exit "Cannot link $binary to $PREFIX/bin"
+  ln -sf $INSPEC_DIR/bin/$binary $PREFIX/bin || error_exit "Cannot link $binary to $PREFIX/bin"
 done
 
-# Ensure all files/directories in $INSTALLER_DIR are owned by root. This
+# Ensure all files/directories in $INSPEC_DIR are owned by root. This
 # has been fixed on new installs but upgrades from old installs need to
 # be manually fixed.
-chown -Rh 0:0 $INSTALLER_DIR
+chown -Rh 0:0 $INSPEC_DIR
 
 echo "Thank you for installing InSpec!"
 
